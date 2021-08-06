@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" >
+    <h:head>
+        <title>Clientes</title>
+    </h:head>
+    <h:body>
+        <h:form>           
+            <p:menubar>
+                <p:menuitem value="inicio"      url="index.xhtml"/>
+                <p:menuitem value="clientes"    url="ClientesPrimefaces.xhtml"/>
+                <p:menuitem value="articulos"   url="ArticulosPrimefaces.xhtml"/>
+            </p:menubar>
+        </h:form>
+
+        <h2 style="text-align: center">MANTENIMIENTO DE CLIENTES</h2>
+
+        <h:form>
+
+            <p:panelGrid columns="8">
+                <p:outputLabel value="Nombre: "/>
+                <p:inputText value="#{clienteMB.cliente.nombre}"
+                             maxlength="25" required="true"
+                             requiredMessage="Campo obligatorio"
+                             style="width: 150px;"/>
+                <p:outputLabel value="Apellido: "/>
+                <p:inputText value="#{clienteMB.cliente.apellido}"
+                             maxlength="25" required="true"
+                             requiredMessage="Campo obligatorio"
+                             style="width: 150px;"/>
+                <p:outputLabel value="Edad: "/>
+                <p:inputText value="#{clienteMB.cliente.edad}"
+                             maxlength="20" required="true"
+                             requiredMessage="Campo obligatorio"
+                             style="width: 150px;"/>
+                <p:outputLabel value="Direccion: "/>
+                <p:inputText value="#{clienteMB.cliente.direccion}"
+                             maxlength="20" required="true"
+                             requiredMessage="Campo obligatorio"
+                             style="width: 150px;"/>
+                <p:outputLabel value="Email: "/>
+                <p:inputText value="#{clienteMB.cliente.email}"
+                             required="true"
+                             requiredMessage="Campo obligatorio"
+                             style="width: 150px;"/>
+                <p:outputLabel value="Telefono: "/>
+                <p:inputText value="#{clienteMB.cliente.telefono}"
+                             required="true"
+                             requiredMessage="Campo obligatorio"
+                             style="width: 150px;"/>
+                <p:outputLabel value="Tipo Documento: "/>
+                <p:selectOneMenu value="#{clienteMB.cliente.tipoDocumento}" style=" width: 138px;">
+                    <f:selectItems value="#{tipoDocumentoMB.tipoDocumento}" />
+                </p:selectOneMenu>          
+                <p:outputLabel value="Numero Documento: "/>
+                <p:inputText value="#{clienteMB.cliente.numeroDocumento}"
+                             required="true"
+                             requiredMessage="Campo obligatorio"
+                             style="width: 150px;"/>
+            </p:panelGrid>
+            <br></br>
+
+
+
+            <p:commandButton action="#{clienteMB.save()}" value="Guardar" ajax="false"/>
+            <p:outputLabel value="#{clienteMB.mensaje}"/>
+            <br></br>
+            <br></br>
+            <p:growl id="growl" showDetail="true"/>
+        </h:form>
+
+        <h:form>            
+            <p:outputLabel value="Buscar Apellido: "/>
+            <p:inputText value="#{clienteMB.buscarApellido}"/>      
+
+            <br></br>
+            <p:dataTable var="c" value="#{clienteMB.likeApellido}" rows="40"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
+                         {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                         rowsPerPageTemplate="5,10,15,20,{ShowAll|'All'}"                        
+                         rowKey="#{c.id}">    
+                <p:column headerText="Id">
+                    <h:outputText value="#{c.id}" />
+                </p:column>
+
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{c.nombre}" />
+                </p:column>
+
+                <p:column headerText="Apellido">
+                    <h:outputText value="#{c.apellido}" />
+                </p:column>
+
+                <p:column headerText="Edad">
+                    <h:outputText value="#{c.edad}" />
+                </p:column>
+
+                <p:column headerText="Direccion">
+                    <h:outputText value="#{c.direccion}" />
+                </p:column>
+
+                <p:column headerText="Email">
+                    <h:outputText value="#{c.email}" />
+                </p:column>
+
+                <p:column headerText="Telefono">
+                    <h:outputText value="#{c.telefono}" />
+                </p:column>
+
+                <p:column headerText="Tipo Documento">
+                    <h:outputText value="#{c.tipoDocumento}" />
+                </p:column>
+
+                <p:column headerText="Numero Docuemnto">
+                    <h:outputText value="#{c.numeroDocumento}" />
+                </p:column>
+
+                <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+
+                <f:facet name="paginatorTopLeft">
+                    <p:commandButton type="button" icon="pi pi-refresh"/>
+                </f:facet>
+
+                <f:facet name="paginatorBottomRight">
+                    <p:commandButton type="button" icon="pi pi-cloud-upload"/>
+                </f:facet>
+
+            </p:dataTable>
+        </h:form>
+
+    </h:body>
+</html>
+

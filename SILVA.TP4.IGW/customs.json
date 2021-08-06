@@ -1,0 +1,8 @@
+{
+    "elements": {
+        "p:menubar": {},
+        "p:menuitem": {},
+        "h:form": {}
+    },
+    "attributes": {}
+}

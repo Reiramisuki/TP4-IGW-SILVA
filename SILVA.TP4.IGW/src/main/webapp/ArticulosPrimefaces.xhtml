@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <h:head>
+        <title>Articulos</title>
+    </h:head>
+    <h:body>
+        <h:form>           
+            <p:menubar>
+                <p:menuitem value="inicio"      url="index.xhtml"/>
+                <p:menuitem value="clientes"    url="ClientesPrimefaces.xhtml"/>
+                <p:menuitem value="articulos"   url="ArticulosPrimefaces.xhtml"/>
+            </p:menubar>
+        </h:form>
+        <h2 style="text-align: center">MANTENIMIENTO DE ARTICULOS</h2>
+        <h:form>
+
+            <p:panelGrid columns="10">
+                <p:outputLabel value="Descripción: "/>
+                <p:inputText value="#{articuloMB.articulo.descripcion}"
+                             maxlength="25" required="true"
+                             requiredMessage="Campo obligatorio"
+                             style="width: 150px;"/>
+                <p:outputLabel value="Tipo: "/>
+                <p:selectOneMenu value="#{articuloMB.articulo.tipo}" style=" width: 138px;">
+                    <f:selectItems value="#{tipoMB.tipos}" />
+                </p:selectOneMenu>
+                <p:outputLabel value="Color: "/>
+                <p:inputText value="#{articuloMB.articulo.color}"
+                             maxlength="20" required="true"
+                             requiredMessage="Campo obligatorio"
+                             style="width: 150px;"/>
+                <p:outputLabel value="Talle / Número: "/>
+                <p:inputText value="#{articuloMB.articulo.talle_num}"
+                             maxlength="20" required="true"
+                             requiredMessage="Campo obligatorio"
+                             style="width: 150px;"/>
+                <p:outputLabel value="Stock: "/>
+                <p:inputText value="#{articuloMB.articulo.stock}"
+                             required="true"
+                             requiredMessage="Campo obligatorio"
+                             style="width: 150px;"/>
+                <p:outputLabel value="Stock Mínimo: "/>
+                <p:inputText value="#{articuloMB.articulo.stockMin}"
+                             required="true"
+                             requiredMessage="Campo obligatorio"
+                             style="width: 150px;"/>
+                <p:outputLabel value="Stock Máximo: "/>
+                <p:inputText value="#{articuloMB.articulo.stockMax}"
+                             required="true"
+                             requiredMessage="Campo obligatorio"
+                             style="width: 150px;"/>
+                <p:outputLabel value="Costo: "/>
+                <p:inputText value="#{articuloMB.articulo.costo}"
+                             required="true"
+                             requiredMessage="Campo obligatorio"
+                             style="width: 150px;"/>
+                <p:outputLabel value="Precio: "/>
+                <p:inputText value="#{articuloMB.articulo.precio}"
+                             required="true"
+                             requiredMessage="Campo obligatorio"
+                             style="width: 150px;"/>
+                <p:outputLabel value="Temporada: "/>
+                <p:selectOneMenu value="#{articuloMB.articulo.temporada}" style=" width: 138px;">
+                    <f:selectItems value="#{temporadaMB.temporadas}" />
+                </p:selectOneMenu>
+            </p:panelGrid>
+            <br></br>
+
+
+
+            <p:commandButton action="#{articuloMB.save()}" value="Guardar" ajax="false"/>
+            <p:outputLabel value="#{articuloMB.mensaje}"/>
+
+            <br></br>
+            <br></br>
+
+            <p:growl id="growl" showDetail="true"/>
+        </h:form>
+
+        <h:form>            
+            <p:outputLabel value="Buscar Descripción: "/>
+            <p:inputText value="#{articuloMB.buscarDescripcion}"/>            
+            <p:dataTable var="a" value="#{articuloMB.likeDescripcion}" rows="5"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} 
+                         {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                         rowsPerPageTemplate="5,10,15,20,{ShowAll|'All'}"                        
+                         rowKey="#{a.id}">    
+                <p:column headerText="Id">
+                    <h:outputText value="#{a.id}" />
+                </p:column>
+
+                <p:column headerText="Descripcion">
+                    <h:outputText value="#{a.descripcion}" />
+                </p:column>
+
+                <p:column headerText="Tipo">
+                    <h:outputText value="#{a.tipo}" />
+                </p:column>
+
+                <p:column headerText="Color">
+                    <h:outputText value="#{a.color}" />
+                </p:column>
+
+                <p:column headerText="Talle / Num">
+                    <h:outputText value="#{a.talle_num}" />
+                </p:column>
+
+                <p:column headerText="Stock">
+                    <h:outputText value="#{a.stock}" />
+                </p:column>
+
+                <p:column headerText="Stock Mínimo">
+                    <h:outputText value="#{a.stockMin}" />
+                </p:column>
+
+                <p:column headerText="Stock Máximo">
+                    <h:outputText value="#{a.stockMax}" />
+                </p:column>
+
+                <p:column headerText="Costo">
+                    <h:outputText value="#{a.costo}" />
+                </p:column>
+
+                <p:column headerText="Precio">
+                    <h:outputText value="#{a.precio}" />
+                </p:column>
+
+                <p:column headerText="Temporada">
+                    <h:outputText value="#{a.temporada}" />
+                </p:column>
+
+                <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+
+                <f:facet name="paginatorTopLeft">
+                    <p:commandButton type="button" icon="pi pi-refresh"/>
+                </f:facet>
+
+                <f:facet name="paginatorBottomRight">
+                    <p:commandButton type="button" icon="pi pi-cloud-upload"/>
+                </f:facet>
+
+            </p:dataTable>
+        </h:form>
+    </h:body>
+</html>
+
