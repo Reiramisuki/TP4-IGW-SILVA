@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xml:lang="es"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html;
+              charset=utf-8" />
+        <title>Ropa Web</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    </h:head>
+    <h:body class="inicio">
+
+        <h1 style="font-size:70px ;text-align: center">~Bienvenidos a Ropa web~</h1>
+      
+        
+          <div class="card">
+            <p:button value="Inicio" styleClass="rounded-button"  style="font-size: 1.7em;  border-radius: 5px;"  href ="index.xhtml"/>
+            <p:button value= "Clientes" styleClass="rounded-button"  style="font-size: 1.7em;   border-radius: 5px;" href ="ClientesPrimefaces.xhtml"/>
+            <p:button value="Articulos" styleClass="rounded-button"  style="font-size: 1.7em;   border-radius: 5px;" href ="ArticulosPrimefaces.xhtml"/>     
+        </div>
+        
+             <div class="card">
+                 <p:contentFlow value="#{imagesView.images}" style="height:160 ;margin-bottom: -56px " var="image">
+                    <p:graphicImage url="resources/demo/images/img/#{image}" styleClass="content" />
+                     <div class="caption">#{image} </div>
+                </p:contentFlow>
+        </div>
+        
+          <style type="text/css">
+        </style>
+        <div class="card">
+         <h:form>
+             <h5 class="p-mt-0" style="font-size: 1.5em;"></h5>
+        <p:clock />
+         </h:form>
+        </div>
+        
+        
+        
+    </h:body>
+</html>
+
